@@ -2,18 +2,13 @@ package com.example.todoapp.controllers;
 
 import javax.validation.Valid;
 
-import com.example.todoapp.models.Ingredient;
 import com.example.todoapp.models.Recipe;
 import com.example.todoapp.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -25,13 +20,13 @@ public class RecipeController {
 
     @GetMapping("/recipes")
     public List<Recipe> getAllRecipes() {
-        Sort sortByCreatedAtDesc = new Sort(Sort.Direction.DESC, "createdAt");
-        return recipeRepository.findAll(sortByCreatedAtDesc);
+//        Sort sortByCreatedAtDesc = new Sort(Sort.Direction.DESC, "createdAt");
+        return recipeRepository.findAll();
     }
 
     @PostMapping("/recipes/create")
-    public Recipe createRecipe(@Valid @RequestBody Recipe recipe) {
-        return recipeRepository.save(recipe);
+    public List<Recipe> createRecipe(@Valid @RequestBody List<Recipe> recipe) {
+        return recipeRepository.saveAll(recipe);
     }
 
     @GetMapping(value = "/recipes/{id}")
@@ -60,4 +55,12 @@ public class RecipeController {
                     return ResponseEntity.ok().build();
                 }).orElse(ResponseEntity.notFound().build());
     }
+
+//    @GetMapping(value = "/recipes/{ingredient}")
+//    public List<Ingredient> getIngredients(@PathVariable("ingredient") String ingredient) {
+//        this.recipeRepository.findAll()
+//                .stream()
+//                .map(Recipe::getIngredients)
+//                .filter();
+//    }
 }

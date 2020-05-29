@@ -31,7 +31,7 @@ public class Recipe {
         this.description = description;
         this.imagePath = imagePath;
         this.ingredients = ingredients;
-        this.createdAt = createdAt;
+//        this.createdAt = createdAt;
     }
 
     public String getDescription() {
@@ -90,13 +90,13 @@ public class Recipe {
         this.title = title;
     }
 
-    public Date getCreatedAt() {
-
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-
-        this.createdAt = createdAt;
-    }
+//    public Date getCreatedAt() {
+//
+//        return createdAt;
+//    }
+//
+//    public void setCreatedAt(Date createdAt) {
+//
+//        this.createdAt = createdAt;
+//    }
 }
